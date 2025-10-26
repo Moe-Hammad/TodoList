@@ -1,17 +1,20 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import React from "react";
+import useTheme from "../../hooks/useTheme";
 
 const Tabslayout = () => {
+  const { colors } = useTheme();
+
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "red",
-        tabBarInactiveTintColor: "green",
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.textMuted,
         tabBarStyle: {
-          backgroundColor: "#1e293b",
+          backgroundColor: colors.surface,
           borderTopWidth: 1,
-          borderTopColor: "yellow",
+          borderTopColor: colors.border,
           height: 90,
           paddingBottom: 30,
           paddingTop: 10,
@@ -33,7 +36,7 @@ const Tabslayout = () => {
         }}
       />
       <Tabs.Screen
-        name="settings" // wichtig, icon basierd hierauf
+        name="settings" // wichtig, genau wie Component
         options={{
           title: "Settings",
           tabBarIcon: ({ color, size }) => (
