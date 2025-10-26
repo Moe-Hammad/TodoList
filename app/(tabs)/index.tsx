@@ -1,26 +1,26 @@
+import { createHomeStyles } from "@/assets/styles/home.style";
 import useTheme from "@/hooks/useTheme";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { StatusBar, Text, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
-  const { toggleDarkMode } = useTheme();
+  const { toggleDarkMode, colors } = useTheme();
+
+  const homestyle = createHomeStyles(colors);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.content}>dragon canolloni</Text>
-      <TouchableOpacity onPress={toggleDarkMode}>
-        <Text>toogle the mode</Text>
-      </TouchableOpacity>
-    </View>
+    <LinearGradient
+      colors={colors.gradients.background}
+      style={homestyle.container}
+    >
+      <StatusBar barStyle={colors.statusBarStyle} />
+      <SafeAreaView style={homestyle.container}>
+        <Text>HI</Text>
+        <TouchableOpacity onPress={toggleDarkMode}>
+          <Text>toogle the mode</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+    </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: "10px",
-  },
-  content: {
-    fontSize: 45,
-  },
-});
